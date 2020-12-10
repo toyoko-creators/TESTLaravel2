@@ -152,6 +152,16 @@ p.imagelist img {
   /* background: #88f; */
 }
 
+#Main_frame {
+  grid-row: 1/4;
+  grid-column: 2 / 3;
+  /*height:100%;*/
+  background: #fafafa;
+  /* background: #8f8; */
+  
+}
+
+
 /* 中央に表示された画像に赤枠をつける */
 .slick-center {
   border: #f16272 1px solid;
