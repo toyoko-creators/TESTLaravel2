@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS test;
-USE test;
+CREATE DATABASE IF NOT EXISTS homestead;
+USE homestead;
 DROP TABLE IF EXISTS users;
 create table users(
     email NVARCHAR(100) NOT NULL PRIMARY KEY,
