@@ -127,7 +127,7 @@ include "templates/header.php";
                 </div>
             </div>
             <div id="Main_frame_bottoms">
-                <div class="slick01">
+                <div class="slick02">
                     <?php foreach ((array)$bottoms as $row) : ?>
                         <img alt=" <?php echo $row["ImageFile"]; ?>" src="images/<?php echo $row["ImageFile"]; ?>.png">
                     <?php endforeach; ?>
@@ -139,7 +139,7 @@ include "templates/header.php";
     </p>
 
     <script type="text/javascript" src="js/jquery-3.5.1.js"></script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="js/slick.min.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
     
