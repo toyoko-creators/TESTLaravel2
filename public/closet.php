@@ -1,5 +1,7 @@
 <?php
     $results = "";
+    $TopSelected = "";
+    $BottomSelected = "";
     $ListNo=1;
     require "../config.php";
     session_start();
@@ -50,6 +52,7 @@ include "templates/header.php";
             <div id="Menu_frame">
             <h2>クローゼット</h2>
                 <form method="post">
+                <?php echo $BottomSelected;?><br>
                     <div class="button-normal">
                         <input type="submit" name="TopPage" value="Topに戻る">
                     </div>
