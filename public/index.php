@@ -58,7 +58,7 @@ include "templates/header.php";
   </form>
   <div class="form-footer">
     <p><a href="create.php">ユーザーアカウント作成</a></p>
-    <p><a href="#">パスワードを忘れた場合</a></p>
+    <!--<p><a href="#">パスワードを忘れた場合</a></p>-->
   </div>
 </div>
 <p>以下テンプレートのやつ
