@@ -110,12 +110,12 @@ include "templates/header.php";
                     <div class="button-normal">
                         <input type="submit"  name="outfit" value="コーディネート保存">
                     </div>
-                    <div class="button-normal">
-                        <input type="submit" name="logout" value="ログアウト">
-                    </div>
                 	<div class="button-normal">
 	                    <input type="submit" class="button" name="TopsButton" value="トップス選択">
 	                    <input type="submit" class="button" name="BottomsButton"  value="ボトムス選択">
+                    </div>
+                    <div class="button-normal Pos-Lowerleft">
+                        <input type="submit" name="logout" value="ログアウト">
                     </div>
                 </form>
             </div>

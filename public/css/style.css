@@ -166,3 +166,10 @@ p.imagelist img {
 .slick-center {
   border: #f16272 1px solid;
 }
+
+/* 左下位置固定 */
+.Pos-Lowerleft{
+  position: absolute;	// 絶対位置
+  left: 0px;
+  bottom: 0px;
+}
