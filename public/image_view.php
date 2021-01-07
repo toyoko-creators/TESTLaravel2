@@ -22,7 +22,8 @@
             $message = '画像を読み込みました';
         }
         catch (PDOException $e) {
-            echo $e->getMessage();
+            //echo $e->getMessage();
+            $message = $e->getMessage();
         }
     }
     

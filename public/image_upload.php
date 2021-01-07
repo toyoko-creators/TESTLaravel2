@@ -49,27 +49,27 @@
         exit;
     }
 
-    if($_SESSION['CheckType'] == 0)
+    if($_SESSION['CheckType'] == 0 && !isset($_SESSION['WearType_before']))
     {
         if(!isset($_SESSION['WearType'])){
-            $WearType = 'Top';
+            $wearType = 'Top';
         }else{
             if (strpos($_SESSION['WearType'],'All') !== false){
-                $WearType = 'Top';
+                $wearType = 'Top';
             }
             else{
-                $WearType = $_SESSION['WearType'];
+                $wearType = $_SESSION['WearType'];
             }
         }
-        $_SESSION['WearType_before'] = $WearType;
+        $_SESSION['WearType_before'] = $wearType;
     }else{
-        $WearType = $_SESSION['WearType_before'];
+        $wearType = $_SESSION['WearType_before'];
     }
     
-    $sql = "SELECT WearType,ImageFile FROM Clothes WHERE email = :email AND WearType = '".$WearType."'" ;
+    $sql = "SELECT WearType,ImageFile FROM Clothes WHERE email = :email AND WearType = '".$wearType."'" ;
     $connection = new PDO($dsn, $username, $password, $options);
     $statement = $connection->prepare($sql);
-    $email = $_SESSION['Emaiil'];
+    $email = $_SESSION['Email'];
     $statement->bindValue(':email', $email, PDO::PARAM_STR);
     $statement->execute();
     $clothesAll = $statement->fetchAll();
@@ -81,10 +81,11 @@
             try  {
                 $imageid = uniqid(mt_rand(), true);
                 $email = $_SESSION['Email'];
-                //$filepath = '../storage/app/images/'.$email.'/'.$WearType.'/'.$imageid.'.png';
-                $filepath = 'Images/'.$email.'/'.$WearType.'/'.$imageid.'.png';
-                $sql = "INSERT INTO Clothes(ImageFile,email,WearType) VALUES (:ImageFile,:email,'$wearType')";
+                //$filepath = '../storage/app/images/'.$email.'/'.$wearType.'/'.$imageid.'.png';
+                $filepath = 'Images/'.$email.'/'.$wearType.'/'.$imageid.'.png';
+                $sql = "INSERT INTO Clothes(ImageFile,email,WearType) VALUES (:ImageFile,:email,:WearType)";
                 $stmt = $connection->prepare($sql);
+                $stmt->bindValue(':WearType', $wearType, PDO::PARAM_STR);
                 $stmt->bindValue(':ImageFile', $imageid, PDO::PARAM_STR);
                 $stmt->bindValue(':email', $email, PDO::PARAM_STR);
                 $stmt->execute();
@@ -99,15 +100,14 @@
         }
     }
 
-    if(isset($_POST['TopDisp'])){$_SESSION['WearType']='Top'; $_SESSION['WearType_before']='Top'; }
-    if(isset($_POST['BottomDisp'])){$_SESSION['WearType']='Bottom'; $_SESSION['WearType_before']='Bottom'; }
+    if(isset($_POST['TopDisp'])){$wearType='Top'; $_SESSION['WearType']='Top'; unset ($_SESSION['WearType_before']); $_SESSION['CheckType'] = 1; }
+    if(isset($_POST['BottomDisp'])){$wearType='Bottom'; $_SESSION['WearType']='Bottom'; unset ($_SESSION['WearType_before']);$_SESSION['CheckType'] = 1; }
 
     $_SESSION['CheckType'] =1;
-    $pagetitle = 'イメージ追加：'.$WearType;
+    $pagetitle = 'イメージ追加：'.$wearType;
 include "templates/header.php";
-echo  $sql ;
 ?>
-<h1>画像アップロード：<?php echo $WearType;?></h1>
+<h1>画像アップロード：<?php echo $wearType;?></h1>
 <form method="post" action="#">
 <p>・タイプ切り替え<br>
     <input type="submit" name="TopDisp"  value="トップス">
@@ -116,7 +116,7 @@ echo  $sql ;
 </p>
 <?php if (isset($_POST['upload'])  ): ?>
     <p><?php echo $message; ?></p>
-    <p><a href="image_view.php?WearType=<?php echo $WearType?>">画像表示へ</a></p>
+    <p><a href="image_view.php?WearType=<?php echo $wearType?>">画像表示へ</a></p>
 <?php else: ?>
     <form method="post" enctype="multipart/form-data">
         <p>アップロード画像</p>
