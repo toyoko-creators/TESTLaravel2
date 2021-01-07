@@ -1,7 +1,7 @@
 <?php
     session_start();
     $results = "";
-
+    $_SESSION['CheckType'] =0;
     function DisplayImage(){
         require "../config.php";
         global $WearType;
@@ -59,7 +59,7 @@ include "templates/header.php";
         <input type="submit" name="BottomDisp"  value="ボトムのみ表示">
     </form>
 </p>
-<?php if (isset($results)): ?>
+<?php if (!empty($results)): ?>
     <table>
       <thead>
         <tr>
@@ -73,7 +73,7 @@ include "templates/header.php";
         <tr>
           <td><?php echo $row["WearType"]; ?></td>
           <td><?php echo $row["ImageFile"]; ?></td>
-          <td><img src="images/<?php echo $row["ImageFile"]; ?>.png" width="300" height="300"></td>
+          <td><img src="Images/<?php echo $_SESSION['Email']; ?>/<?php echo $row["WearType"]; ?>/<?php echo $row["ImageFile"]; ?>.png" width="300" height="300"></td>
         </tr>
       <?php endforeach; ?>
       </tbody>
@@ -81,6 +81,7 @@ include "templates/header.php";
 <?php endif;?>
 <p><a href="image_upload.php">画像アップロードへ</a></p>
 <a href="index.php">Back to home</a>
+    <script type="text/javascript" src="js/jquery-3.5.1.js"></script>
 <?php include "templates/footer.php"; ?>
 
 

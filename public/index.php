@@ -8,7 +8,7 @@
         header('Location: top.php');
         exit;
     }
-
+    $_SESSION['CheckType'] =0;
     //ログイン機能
     $LoginUserName = '';
     $message = '';

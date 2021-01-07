@@ -30,9 +30,10 @@ if (isset($_POST['adduser'])) {
     
     $statement = $connection->prepare($sql);
     $statement->execute($new_user);
-    mkdir("../Strage/app/images/".$_POST['email']."Top", 0777, true);
-    mkdir("../Strage/app/images/".$_POST['email']."Bottom", 0777, true);
-}
+    //mkdir('../storage/app/Images/'.$_POST['email'].'/Top', 0777, true);
+    //mkdir('../storage/app/Images/'.$_POST['email'].'/Bottom', 0777, true);
+    mkdir('Images/'.$_POST['email'].'/Top', 0777, true);
+    mkdir('Images/'.$_POST['email'].'/Bottom', 0777, true);
   } catch(PDOException $error) {
       echo $sql . "<br>" . $error->getMessage();
   }

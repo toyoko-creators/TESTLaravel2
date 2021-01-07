@@ -9,16 +9,19 @@
 require "config.php";
 
 //ファイルの初期化
-foreach (array_filter(glob('public/images/*'),'is_file') as $fileName) {
-    echo 'delete: public/images/'.$fileName."\n";
-    unlink($fileName);
+$BaseImagePath = './public';
+//$BaseImagePath = 'storage/app/images'
+if(file_exists ($BaseImagePath.'/Images')){
+    rmdirAll($BaseImagePath.'/Images');
 }
 
 //ファイルのコピー
-foreach (glob('public/Images_Default/*') as $fileName) {
-    echo 'copy from: public/Images_Default/'.$fileName."\n";
-    copy($fileName, 'public/images/'.basename($fileName));
-}
+$TargetImagePath = './storage/imagesDefault';
+//    echo 'copy from: public/Images_Default/'.$fileName."\n";
+//    copy($fileName, 'public/images/'.basename($fileName));
+//}
+exec("cp -r ".$TargetImagePath." ".$BaseImagePath);
+rename($BaseImagePath.'/imagesDefault',$BaseImagePath.'/Images');
 
 //DB初期化
 try {
@@ -31,4 +34,17 @@ try {
     echo $sql . "<br>" . $error->getMessage();
 }
 
+function rmdirAll($dir) {
+	$res = glob($dir.'/*');
+	foreach ($res as $file) {
+		if (is_file($file)) {
+            unlink($file);
+            echo 'delete file: '.$file."\n";
+		} else {
+			rmdirAll($file);
+		}
+	}
+	rmdir($dir);
+    echo 'delete dir: '.$dir."\n";
+}
 ?>

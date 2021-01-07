@@ -1,4 +1,5 @@
 <?php
+    $_SESSION['CheckType'] =0;
     $results = "";
     $TopSelected = "";
     $BottomSelected = "";
@@ -72,8 +73,8 @@ include "templates/header.php";
                     <div class="slickSet">
                         <?php foreach ((array)$results as $row)  : ?>
                         <span>
-                        <img  alt=" <?php echo $row["TopFile"]; ?>" src="images/<?php echo $row["TopFile"]; ?>.png"  width="300" height="300">
-                        <img  alt=" <?php echo $row["BottomFile"]; ?>" src="images/<?php echo $row["BottomFile"]; ?>.png"  width="300" height="300">
+                        <img  alt=" <?php echo $row["TopFile"]; ?>" src="images/<?php echo $_SESSION['Email'];?>/Top/<?php echo $row["TopFile"]; ?>.png"  width="300" height="300">
+                        <img  alt=" <?php echo $row["BottomFile"]; ?>" src="images/<?php echo $_SESSION['Email'];?>/Bottom/<?php echo $row["BottomFile"]; ?>.png"  width="300" height="300">
                         </span>
                         <?php endforeach; ?>
                     </div>

@@ -6,6 +6,7 @@
         header('Location: index.php');
         exit;
     }
+    $_SESSION['CheckType'] =0;
 
     try  {
         $connection = new PDO($dsn, $username, $password, $options);
@@ -31,7 +32,9 @@
         exit;
     }
     //初期化(デフォルトではすべて表示する)
-    $_SESSION['WearType'] ='All';
+    if(!isset($_SESSION['WearType'] )){
+        $_SESSION['WearType'] ='All';
+    }
     $message="";
 
     
@@ -122,14 +125,14 @@ include "templates/header.php";
             <div id="Main_frame_tops">
                 <div class="slick01">
                     <?php foreach ((array)$tops as $row) : ?>
-                        <img alt=" <?php echo $row["ImageFile"]; ?>" src="images/<?php echo $row["ImageFile"]; ?>.png">
+                        <img alt=" <?php echo $row["ImageFile"]; ?>" src="Images/<?php echo $_SESSION['Email']; ?>/Top/<?php echo $row["ImageFile"]; ?>.png">
                     <?php endforeach; ?>
                 </div>
             </div>
             <div id="Main_frame_bottoms">
                 <div class="slick02">
                     <?php foreach ((array)$bottoms as $row) : ?>
-                        <img alt=" <?php echo $row["ImageFile"]; ?>" src="images/<?php echo $row["ImageFile"]; ?>.png">
+                        <img alt=" <?php echo $row["ImageFile"]; ?>" src="Images/<?php echo $_SESSION['Email']; ?>/Bottom/<?php echo $row["ImageFile"]; ?>.png">
                     <?php endforeach; ?>
                 </div>
             </div>
