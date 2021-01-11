@@ -41,7 +41,7 @@ include "templates/header.php";
 ?>
 
 <div class="form-wrapper">
-  <h1>ログイン</h1>
+  <h1>My Coordination Editor</h1>
 <p style="color: red"><?php echo $message ?></p>
   <form method="post" action="index.php">
     <div class="form-item">
